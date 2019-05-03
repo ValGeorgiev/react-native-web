@@ -7,12 +7,13 @@
  *
  * @flow
  */
+import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
 
 let clipboardAvailable;
 
 export default class Clipboard {
   static isAvailable() {
-    if (clipboardAvailable === undefined) {
+    if (canUseDOM && clipboardAvailable === undefined) {
       clipboardAvailable =
         typeof document.queryCommandSupported === 'function' &&
         document.queryCommandSupported('copy');
